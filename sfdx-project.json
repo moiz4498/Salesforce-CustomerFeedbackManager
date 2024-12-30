@@ -1,0 +1,22 @@
+{
+  "packageDirectories": [
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "force-app",
+      "default": true,
+      "package": "Customer Feedback Manager",
+      "versionDescription": "An app to collect and analyze customer feedback"
+    }
+  ],
+  "name": "CustomerFeedbackManager",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "62.0",
+  "packageAliases": {
+    "Customer Feedback Manager": "0Hobm0000000Ch7CAE",
+    "Customer Feedback Manager@0.1.0-4": "04tbm00000057qTAAQ",
+    "Customer Feedback Manager@0.1.0-5": "04tbm00000059p3AAA",
+    "Customer Feedback Manager@0.1.0-6": "04tbm0000005Cq9AAE"
+  }
+}

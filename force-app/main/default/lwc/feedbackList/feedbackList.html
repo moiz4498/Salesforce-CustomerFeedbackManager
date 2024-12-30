@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Customer Feedback List" icon-name="custom:custom74">
+        <template if:true={feedbacks}>
+            <lightning-datatable hide-checkbox-column="true" data={feedbacks} columns={columns} key-field="id">
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error loading feedback records</p>
+        </template>
+    </lightning-card>
+</template>
