@@ -1,13 +1,12 @@
 <template>
     <lightning-card title="Submit Customer Feedback" icon-name="custom:custom74">
-        <lightning-record-edit-form object-api-name="Customer_Feedback__c" onsuccess={handleSuccess}>
-
+        <lightning-record-edit-form object-api-name={objectApiName} onsuccess={handleSuccess}>
             <lightning-messages></lightning-messages>
 
-            <lightning-input-field required="true" field-name="Customer__c"></lightning-input-field>
-            <lightning-input-field required="true" field-name="Feedback_Type__c"></lightning-input-field>
-            <lightning-input-field required="true" field-name="Rating__c"></lightning-input-field>
-            <lightning-input-field required="true" field-name="Feedback_Text__c"></lightning-input-field>
+            <lightning-input-field required="true" field-name={customerField}></lightning-input-field>
+            <lightning-input-field required="true" field-name={feedbackTypeField}></lightning-input-field>
+            <lightning-input-field required="true" field-name={ratingField}></lightning-input-field>
+            <lightning-input-field required="true" field-name={feedbackTextField}></lightning-input-field>
 
             <lightning-button data-id="submit" variant="brand" label="Submit" type="submit" class="slds-m-top_medium"></lightning-button>
         </lightning-record-edit-form>

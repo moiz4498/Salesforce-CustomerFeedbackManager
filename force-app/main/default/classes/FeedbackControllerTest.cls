@@ -42,12 +42,22 @@ private class FeedbackControllerTest {
     System.runAs(readOnlyUser) {
       try {
         // Call the Apex method
-        List<Customer_Feedback__c> results = FeedbackController.getFeedbackRecords();
+        List<FeedbackController.FeedbackWrapper> results = FeedbackController.getFeedbackRecords();
         System.assertEquals(
           5,
           results.size(),
           'Should return 5 feedback records'
         );
+        
+        // Verify the wrapper data
+        for(FeedbackController.FeedbackWrapper wrapper : results) {
+            System.assertNotEquals(null, wrapper.Id, 'Id should not be null');
+            System.assertNotEquals(null, wrapper.CustomerName, 'CustomerName should not be null');
+            System.assertNotEquals(null, wrapper.Rating, 'Rating should not be null');
+            System.assertNotEquals(null, wrapper.FeedbackType, 'FeedbackType should not be null');
+            System.assertNotEquals(null, wrapper.FeedbackText, 'FeedbackText should not be null');
+            System.assertEquals('John Smith', wrapper.CustomerName, 'Customer name should match');
+        }
       } catch (Exception e) {
         System.assert(false, 'Exception message was "' + e.getMessage() + '"');
       }
@@ -150,14 +160,14 @@ private class FeedbackControllerTest {
     // Grant read-only access to the Customer_Feedback__c object
     insert new ObjectPermissions(
       ParentId = ps.Id,
-      SobjectType = 'Customer_Feedback__c',
+      SobjectType = Schema.Customer_Feedback__c.SObjectType.getDescribe().getName(),
       PermissionsRead = true
     );
 
     // Grant read-only access to the Contact object
     insert new ObjectPermissions(
       ParentId = ps.Id,
-      SobjectType = 'Contact',
+      SobjectType = Schema.Contact.SObjectType.getDescribe().getName(),
       PermissionsRead = true
     );
 
@@ -186,14 +196,16 @@ private class FeedbackControllerTest {
     List<FieldPermissions> fieldPermissions = new List<FieldPermissions>();
 
     System.runAs(readOnlyUser) {
+      String cfSobjectType = Schema.Customer_Feedback__c.SObjectType.getDescribe().getName();
+
       if (
         !Schema.sObjectType.Customer_Feedback__c.fields.Feedback_Text__c.isAccessible()
       ) {
         fieldPermissions.add(
           new FieldPermissions(
             ParentId = psId,
-            SObjectType = 'Customer_Feedback__c',
-            Field = 'Customer_Feedback__c.Feedback_Text__c',
+            SObjectType = cfSobjectType,
+            Field = cfSobjectType + '.' + Schema.Customer_Feedback__c.Fields.Feedback_Text__c.getDescribe().getName(),
             PermissionsRead = true
           )
         );
@@ -204,8 +216,8 @@ private class FeedbackControllerTest {
         fieldPermissions.add(
           new FieldPermissions(
             ParentId = psId,
-            SObjectType = 'Customer_Feedback__c',
-            Field = 'Customer_Feedback__c.Sentiment__c',
+            SObjectType = cfSobjectType,
+            Field = cfSobjectType + '.' + Schema.Customer_Feedback__c.Fields.Sentiment__c.getDescribe().getName(),
             PermissionsRead = true
           )
         );
