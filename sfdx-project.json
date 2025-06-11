@@ -3,6 +3,7 @@
     {
       "versionName": "ver 0.1",
       "versionNumber": "0.1.0.NEXT",
+      "ancestorVersion": "HIGHEST",
       "path": "force-app",
       "default": true,
       "package": "Customer Feedback Manager",
@@ -15,6 +16,7 @@
   "sourceApiVersion": "62.0",
   "packageAliases": {
     "Customer Feedback Manager": "0HoVm00000000b7KAA",
-    "Customer Feedback Manager@0.1.0-1": "04tVm000006DdHpIAK"
+    "Customer Feedback Manager@0.1.0-1": "04tVm000006DdHpIAK",
+    "Customer Feedback Manager@0.1.1": "04tVm000006G2s1IAC"
   }
 }
